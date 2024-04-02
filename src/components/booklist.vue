@@ -1,0 +1,49 @@
+<template>
+    <div id="app" class="container my-5">
+      <h1>藏書目錄</h1>
+      <div class="row">
+        <div v-for="(book, index) in books" :key="index" class="col-md-3 mb-4">
+          <div class="card">
+            <img :src="book.ImgUrl" class="card-img-top" alt="Book Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ book.Name }}</h5>
+              <p class="card-text">{{ book.Author }}</p>
+              <button class="btn btn-primary" @click="borrowBook(book)">Borrow</button>
+              <button class="btn btn-primary" @click="editBook(book)">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+<script>
+export default {
+  data () {
+    return {
+      books: []
+    }
+  },
+  created () {
+    this.fetchBooks()
+  },
+  methods: {
+    fetchBooks () {
+      fetch('http://localhost:8080/listBook')
+        .then(response => response.json())
+        .then(data => {
+          this.books = data
+        })
+        .catch(error => {
+          console.error('Error fetching books:', error)
+        })
+    },
+    borrowBook (book) {
+    },
+    editBook (book) {
+      this.$router.push({ name: 'editbook', params: { book } })
+    }
+  }
+}
+</script>
+<style>
+</style>

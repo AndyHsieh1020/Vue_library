@@ -1,0 +1,29 @@
+<template>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Your Logo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link to="/addbook" class="nav-link">新增書籍</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/booklist" class="nav-link">書籍清單</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/register" class="nav-link">註冊會員</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link">登入會員</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/logout" class="nav-link">登出會員</router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</template>
