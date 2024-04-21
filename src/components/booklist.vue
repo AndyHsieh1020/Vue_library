@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="container my-5">
-      <h1>藏書目錄</h1>
+      <h1>書庫清單</h1>
       <div class="row">
         <div v-for="(book, index) in books" :key="index" class="col-md-3 mb-4">
           <div class="card">
@@ -8,7 +8,6 @@
             <div class="card-body">
               <h5 class="card-title">{{ book.Name }}</h5>
               <p class="card-text">{{ book.Author }}</p>
-              <button class="btn btn-primary" @click="borrowBook(book)">Borrow</button>
               <button class="btn btn-primary" @click="editBook(book)">Edit</button>
             </div>
           </div>
@@ -36,8 +35,6 @@ export default {
         .catch(error => {
           console.error('Error fetching books:', error)
         })
-    },
-    borrowBook (book) {
     },
     editBook (book) {
       this.$router.push({ name: 'editbook', params: { book } })

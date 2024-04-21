@@ -22,9 +22,9 @@
                         <label for="introduction" class="form-label">介紹</label>
                         <textarea type="text" class="form-control" id="introduction" v-model="introduction" required style="height: 200px;"></textarea>
                       </div>
-                      <button class="btn btn-primary" @click="editbook()">完成</button>
-                      <button class="btn btn-danger" @click="deletebook()">刪除</button>
-                      <button class="btn btn-primary" @click="goback()">返回</button>
+                      <button type="button" class="btn btn-primary" @click="editbook()">完成</button>
+                      <button type="button" class="btn btn-danger" @click="deletebook()">刪除</button>
+                      <button type="button" class="btn btn-primary" @click="goback()">返回</button>
                     </form>
                   </div>
               </div>

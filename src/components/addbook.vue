@@ -3,7 +3,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6">
               <div class="card">
-                  <div class="card-header">新增書籍</div>
+                  <div class="card-header">新增書庫</div>
                   <div class="card-body">
                     <form @submit.prevent="addbook">
                       <div class="mb-3">
@@ -70,6 +70,7 @@ export default {
             this.imgurl = ''
             this.introduction = ''
             alert('書籍增加成功')
+            this.$router.push({ name: 'booklist' })
           } else {
             alert('書籍增加失敗')
           }

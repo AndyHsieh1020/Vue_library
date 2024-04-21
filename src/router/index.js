@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { EventBus } from '@/store/eventbus.js'
 import register from '@/components/register'
 import login from '@/components/login'
 import addbook from '@/components/addbook'
 import booklist from '@/components/booklist'
 import editbook from '@/components/editbook'
 import logout from '@/components/logout'
+import addstore from '@/components/addstore'
+import storelist from '@/components/storelist'
+import editstore from '@/components/editstore'
 Vue.use(Router)
 
 const routes = [
@@ -35,6 +39,24 @@ const routes = [
     path: '/editbook',
     name: 'editbook',
     component: editbook,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/storelist',
+    name: 'storelist',
+    component: storelist,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/addstore',
+    name: 'addstore',
+    component: addstore,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/editstore',
+    name: 'editstore',
+    component: editstore,
     meta: { requiresAuth: true }
   },
   {
@@ -92,8 +114,10 @@ function checkAuthStatuscall () {
           body: JSON.stringify(Data)
         }).then(response => {
           if (response.ok) {
+            EventBus.$emit('login', true)
             resolve(true)
           } else {
+            EventBus.$emit('login', false)
             resolve(false)
           }
         })
@@ -122,8 +146,10 @@ function logoutcall () {
           body: JSON.stringify(Data)
         }).then(response => {
           if (response.ok) {
+            EventBus.$emit('login', false)
             resolve(true)
           } else {
+            EventBus.$emit('login', true)
             resolve(false)
           }
         })
