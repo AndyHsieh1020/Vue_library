@@ -63,6 +63,7 @@ export default {
     this.selectedOption = Status
   },
   methods: {
+    // 編輯館藏
     editbook () {
       // 發送後端
       const bookData = {
@@ -92,10 +93,10 @@ export default {
           console.error('Error adding Book:', error)
         })
     },
-    // 选择下拉菜单的选项
+    // 選擇下拉選單
     selectOption (option) {
       this.selectedOption = option
-    },
+    }, // 刪除館藏
     deletebook () {
       const bookData = {
         inventoryid: this.$route.params.book.Inventory_id

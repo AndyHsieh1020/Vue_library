@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     login () {
-      // 發送後端
+      // 發送登入資訊到後端
       const userData = {
         userName: this.user_name,
         passWord: this.password

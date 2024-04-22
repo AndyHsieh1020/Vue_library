@@ -25,6 +25,7 @@ export default {
   created () {
     this.fetchBooks()
   },
+  // 查詢書籍
   methods: {
     fetchBooks () {
       fetch('http://localhost:8080/listBook')

@@ -46,6 +46,7 @@ export default {
       imgurl: ''
     }
   },
+  // 新增書籍
   methods: {
     addbook () {
       const bookData = {

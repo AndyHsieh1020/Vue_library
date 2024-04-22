@@ -32,6 +32,7 @@ export default {
     }
   },
   methods: {
+    // 新增館藏
     addbook () {
       const bookData = {
         store_time: new Date(this.store_time),

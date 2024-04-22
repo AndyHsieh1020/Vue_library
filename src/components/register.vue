@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     register () {
-      // 發送後端
+      // 發送註冊資訊到後端
       const userData = {
         userName: this.user_name,
         passWord: this.password,

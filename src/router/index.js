@@ -12,6 +12,7 @@ import storelist from '@/components/storelist'
 import editstore from '@/components/editstore'
 Vue.use(Router)
 
+// 路由控制
 const routes = [
   {
     path: '/register',
@@ -97,7 +98,7 @@ router.beforeEach((to, from, next) => {
   })
   checkAuthStatuscall().catch((e) => console.log(e))
 })
-
+// 元件切換時身份驗證
 function checkAuthStatuscall () {
   return new Promise((resolve, reject) => {
     try {
@@ -130,6 +131,7 @@ function checkAuthStatuscall () {
     }
   })
 }
+// 呼叫登出
 function logoutcall () {
   return new Promise((resolve, reject) => {
     try {

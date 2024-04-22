@@ -34,6 +34,7 @@ export default {
   created () {
     this.fetchBooks()
   },
+  // 查詢館藏
   methods: {
     fetchBooks () {
       fetch('http://localhost:8080/listInventory')

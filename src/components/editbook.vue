@@ -51,6 +51,7 @@ export default {
     this.imgurl = ImgUrl
   },
   methods: {
+    // 編輯書籍
     editbook () {
       // 發送後端
       const bookData = {
@@ -83,6 +84,7 @@ export default {
           console.error('Error adding Book:', error)
         })
     },
+    // 刪除書籍
     deletebook () {
       const bookData = {
         isbn: this.$route.params.book.ISBN
