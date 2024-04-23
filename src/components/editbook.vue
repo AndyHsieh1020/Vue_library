@@ -16,7 +16,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="imgurl" class="form-label">圖片連結</label>
-                        <input type="text" class="form-control" id="imgurl" v-model="imgurl" required>
+                        <input type="text" class="form-control" id="imgUrl" v-model="imgUrl" required>
                       </div>
                       <div class="mb-3">
                         <label for="introduction" class="form-label">介紹</label>
@@ -40,7 +40,7 @@ export default {
       name: '',
       author: '',
       introduction: '',
-      imgurl: ''
+      imgUrl: ''
     }
   },
   mounted () {
@@ -48,7 +48,7 @@ export default {
     this.name = Name
     this.author = Author
     this.introduction = Introduction
-    this.imgurl = ImgUrl
+    this.imgUrl = ImgUrl
   },
   methods: {
     // 編輯書籍
@@ -56,13 +56,12 @@ export default {
       // 發送後端
       const bookData = {
         name: this.name,
-        isbn: this.$route.params.book.ISBN,
         author: this.author,
         introduction: this.introduction,
-        imgurl: this.imgurl
+        imgUrl: this.imgUrl
       }
-      fetch('http://localhost:8080/editBook', {
-        method: 'POST',
+      fetch(`http://localhost:8080/book/${this.$route.params.book.ISBN}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -72,7 +71,7 @@ export default {
           if (response.ok) {
             this.name = ''
             this.author = ''
-            this.imgurl = ''
+            this.imgUrl = ''
             this.introduction = ''
             alert('書籍編輯成功')
             this.$router.push({ name: 'booklist' })
@@ -86,15 +85,11 @@ export default {
     },
     // 刪除書籍
     deletebook () {
-      const bookData = {
-        isbn: this.$route.params.book.ISBN
-      }
-      fetch('http://localhost:8080/deleteBook', {
-        method: 'POST',
+      fetch(`http://localhost:8080/book/${this.$route.params.book.ISBN}`, {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bookData)
+        }
       })
         .then(response => {
           if (response.ok) {

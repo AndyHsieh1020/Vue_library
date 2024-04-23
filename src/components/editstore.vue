@@ -12,7 +12,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="author" class="form-label">入庫日期</label>
-                        <input type="date" class="form-control" id="store_time" v-model="store_time" required>
+                        <input type="date" class="form-control" id="storeTime" v-model="storeTime" required>
                       </div>
                       <div class="mb-3">
                         <label for="introduction" class="form-label">狀態</label>
@@ -44,7 +44,7 @@ export default {
   data () {
     return {
       isbn: '',
-      store_time: '',
+      storeTime: '',
       options: ['出借中', '在庫', '整理中', '遺失', '毀損', '廢棄'],
       selectedOption: ''
     }
@@ -59,7 +59,7 @@ export default {
     const day = String(dateTime.getDate()).padStart(2, '0')
     const formattedDate = `${year}-${month}-${day}`
     // eslint-disable-next-line camelcase
-    this.store_time = formattedDate
+    this.storeTime = formattedDate
     this.selectedOption = Status
   },
   methods: {
@@ -68,12 +68,11 @@ export default {
       // 發送後端
       const bookData = {
         isbn: this.isbn,
-        store_time: new Date(this.store_time),
-        status: this.selectedOption,
-        inventoryid: this.$route.params.book.Inventory_id
+        storeTime: new Date(this.storeTime),
+        status: this.selectedOption
       }
-      fetch('http://localhost:8080/editInventory', {
-        method: 'POST',
+      fetch(`http://localhost:8080/inventory/${this.$route.params.book.Inventory_id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -81,7 +80,7 @@ export default {
       })
         .then(response => {
           if (response.ok) {
-            this.store_time = ''
+            this.storeTime = ''
             this.isbn = ''
             alert('館藏編輯成功')
             this.$router.push({ name: 'storelist' })
@@ -98,15 +97,11 @@ export default {
       this.selectedOption = option
     }, // 刪除館藏
     deletebook () {
-      const bookData = {
-        inventoryid: this.$route.params.book.Inventory_id
-      }
-      fetch('http://localhost:8080/deleteInventory', {
-        method: 'POST',
+      fetch(`http://localhost:8080/inventory/${this.$route.params.book.Inventory_id}`, {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bookData)
+        }
       })
         .then(response => {
           if (response.ok) {

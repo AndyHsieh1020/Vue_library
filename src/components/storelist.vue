@@ -37,7 +37,7 @@ export default {
   // 查詢館藏
   methods: {
     fetchBooks () {
-      fetch('http://localhost:8080/listInventory')
+      fetch('http://localhost:8080/inventory')
         .then(response => response.json())
         .then(data => {
           this.books = data

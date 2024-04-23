@@ -20,7 +20,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="imgurl" class="form-label">圖片連結</label>
-                        <input type="text" class="form-control" id="imgurl" v-model="imgurl" required>
+                        <input type="text" class="form-control" id="imgUrl" v-model="imgUrl" required>
                       </div>
                       <div class="mb-3">
                         <label for="introduction" class="form-label">介紹</label>
@@ -54,9 +54,9 @@ export default {
         isbn: this.isbn,
         author: this.author,
         introduction: this.introduction,
-        imgurl: this.imgurl
+        imgUrl: this.imgUrl
       }
-      fetch('http://localhost:8080/addBook', {
+      fetch('http://localhost:8080/book', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ export default {
             this.isbn = ''
             this.name = ''
             this.author = ''
-            this.imgurl = ''
+            this.imgUrl = ''
             this.introduction = ''
             alert('書籍增加成功')
             this.$router.push({ name: 'booklist' })

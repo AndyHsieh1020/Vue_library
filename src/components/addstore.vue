@@ -12,7 +12,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="author" class="form-label">入庫日期</label>
-                        <input type="date" class="form-control" id="store_time" v-model="store_time" required>
+                        <input type="date" class="form-control" id="storeTime" v-model="storeTime" required>
                       </div>
                       <button type="submit" class="btn btn-primary">新增</button>
                     </form>
@@ -28,17 +28,17 @@ export default {
   data () {
     return {
       isbn: '',
-      store_time: ''
+      storeTime: ''
     }
   },
   methods: {
     // 新增館藏
     addbook () {
       const bookData = {
-        store_time: new Date(this.store_time),
+        storeTime: new Date(this.storeTime),
         isbn: this.isbn
       }
-      fetch('http://localhost:8080/addInventory', {
+      fetch('http://localhost:8080/inventory', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ export default {
         .then(response => {
           if (response.ok) {
             this.isbn = ''
-            this.store_time = ''
+            this.storeTime = ''
             alert('藏書增加成功')
             this.$router.push({ name: 'storelist' })
           } else {

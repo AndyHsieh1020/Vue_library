@@ -28,7 +28,7 @@ export default {
   // 查詢書籍
   methods: {
     fetchBooks () {
-      fetch('http://localhost:8080/listBook')
+      fetch('http://localhost:8080/book')
         .then(response => response.json())
         .then(data => {
           this.books = data
